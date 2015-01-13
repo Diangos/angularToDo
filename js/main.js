@@ -1,6 +1,20 @@
 /**
- * Created by tudormerlas on 12.01.02015.
+ * Created by Merlas Tudor<tudor.merlas@evozon.com> on 12.01.02015.
  */
-$(document).ready(function() {
-    alert("mumu!");
+
+var app;
+
+
+
+app = angular.module('todo', []);
+
+app.controller('MainController', function(){
+    "use strict";
+    var self = this;
+
+    self.users = [];
+
+    self.persist = function () {
+        self.users.push(self.users);
+    };
 });
