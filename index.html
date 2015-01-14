@@ -19,26 +19,51 @@
     </head>
     <body>
         <div class="container">
-            <div class="col-xs-6 col-xs-offset-3" ng-controller="MainController as mainCtrl">
+            <div class="col-xs-8 col-xs-offset-2" ng-controller="ToDoController as todoCtrl">
                 <h1>To Do</h1>
 
                 <p class="lead">This is an experiment to see how this will work</p>
 
-                <div class="userInfo" ng-repeat="user in mainCtrl.users">
-                    <h4>{{user.username}}</h4>
-                    <p>{{user.password}}</p>
+                <div class="main-display">
+                    <form>
+
+                        <div class="todos">
+                            <div class="item" ng-repeat="item in todoCtrl.items track by item.label">
+                                <input type="checkbox" name="done[{{$index}}]" ng-model="item.done"/>
+                                <label ng-class="{done: item.done}" for="item[{{$index}}]">{{item.label}}</label>
+                                <input type="text" ng-model="item.label" id="item[{{$index}}]" name="item[{{$index}}]"/>
+
+                                <button class="btn btn-default pull-right remove" ng-click="todoCtrl.remove($index)">
+                                    <i class="glyphicon glyphicon-minus" aria-hidden="true"></i>
+                                    Remove
+                                </button>
+
+                            </div>
+
+                            <div class="control-area">
+                                <input type="text" class="large" ng-model="todoCtrl.itemLabel" placeholder="ToDo item text"/>
+
+                                <button class="btn btn-primary" ng-click="todoCtrl.add()">
+                                    <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+                                    Add
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- BUTTONS -->
+                        <button class="btn btn-warning" ng-click="todoCtrl.clearDone()">
+                            <i class="glyphicon glyphicon-minus" aria-hidden="true"></i>
+                            Clear Completed
+                        </button>
+
+                        <button class="btn btn-danger" ng-click="todoCtrl.clearAll()">
+                            <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
+                            Clear All
+                        </button>
+
+                    </form>
                 </div>
 
-                <form ng-submit="mainCtrl.persist()">
-                    <label for="username">Username</label><br/>
-                    <input id="username" type="text" ng-model="mainCtrl.users.username"/>
-                    <br/>
-                    <label for="password">Password</label><br/>
-                    <input id="password" type="password" ng-model="mainCtrl.users.password"/>
-                    <br/>
-                    <br/>
-                    <button type="submit">Add info</button>
-                </form>
             </div>
         </div>
     </body>

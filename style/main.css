@@ -3,6 +3,78 @@ body {
     color: #555;
 }
 
-.bibi {
+.todos {
+    display: table;
+    width: 100%;
+    padding: 15px 0;
+    margin-bottom: 20px;
+
+    border: 1px solid #CCCCCC;
+
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+
+    background-color: #F8F8F8;
+}
+
+.todos .item {
+    display: inline-block;
+    height: 50px;
+    width: 100%;
+    padding: 0 20px;
+    vertical-align: middle;
+}
+
+.todos .item:after {
+    display: inline-block;
+    height: 100%;
+    visibility: hidden;
+    content: "";
+    vertical-align: middle;
+}
+
+.todos .item > * {
+    display: inline-block;
+    vertical-align: middle;
+    margin: auto;
+}
+
+.todos .item .remove {
+    display: none;
+}
+
+.todos .item:hover {
+    background-color: white;
+}
+
+.todos .item:hover .remove {
+    display: inline-block;
+}
+
+.control-area{
+    padding: 15px;
+    display: table;
+    width: 100%;
+}
+
+.control-area input {
+    display: table-cell;
+    padding: 5px;
+    width: 80%;
+}
+
+.control-area button {
+    display: table-cell;
+    width: 15%;
+    margin-left: 5%;
+}
+
+.control-area > * {
+    vertical-align: middle;
+}
+
+.done {
     color: palevioletred;
+    text-decoration: line-through;
 }
