@@ -19,31 +19,31 @@
                 done: true
             },
             {
-                label: 'Bibi',
+                label: 'Do the friggin\' dishes',
                 done: false
             },
             {
-                label: 'Bubu',
+                label: 'Take the dog out for a walk',
+                done: false
+            },
+            {
+                label: 'Make sweet love to my wife',
+                done: false
+            },
+            {
+                label: 'Eat like a pig',
                 done: true
             },
             {
-                label: 'Bobo',
+                label: 'Play Planetside 2 all day long',
                 done: true
-            },
-            {
-                label: 'Baba',
-                done: true
-            },
-            {
-                label: 'Buba',
-                done: true
-            },
+            }
         ];
 
         self.add = function () {
 
             if (self.itemLabel === undefined || self.itemLabel === "") {
-                return false;
+                return;
             }
             // Don't allow duplicate items
             // It makes ng-repeat throw and error
@@ -71,7 +71,7 @@
             }
         };
 
-        self.remove = function(index) {
+        self.remove = function(event, index) {
             if (index >= 0 && index < self.items.length ) {
                 self.items.splice(index, 1);
             }

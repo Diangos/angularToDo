@@ -25,43 +25,65 @@
                 <p class="lead">This is an experiment to see how this will work</p>
 
                 <div class="main-display">
-                    <form>
 
-                        <div class="todos">
-                            <div class="item" ng-repeat="item in todoCtrl.items track by item.label">
-                                <input type="checkbox" name="done[{{$index}}]" ng-model="item.done"/>
-                                <label ng-class="{done: item.done}" for="item[{{$index}}]">{{item.label}}</label>
-                                <input type="text" ng-model="item.label" id="item[{{$index}}]" name="item[{{$index}}]"/>
+                    <div class="todos">
 
-                                <button class="btn btn-default pull-right remove" ng-click="todoCtrl.remove($index)">
-                                    <i class="glyphicon glyphicon-minus" aria-hidden="true"></i>
-                                    Remove
-                                </button>
+                        <div class="control-area">
+                            <input type="text" class="large" ng-model="todoCtrl.itemLabel" placeholder="ToDo item text"/>
 
-                            </div>
-
-                            <div class="control-area">
-                                <input type="text" class="large" ng-model="todoCtrl.itemLabel" placeholder="ToDo item text"/>
-
-                                <button class="btn btn-primary" ng-click="todoCtrl.add()">
-                                    <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
-                                    Add
-                                </button>
-                            </div>
+                            <button class="btn btn-primary" ng-click="todoCtrl.add()">
+                                <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+                                Add
+                            </button>
                         </div>
 
-                        <!-- BUTTONS -->
-                        <button class="btn btn-warning" ng-click="todoCtrl.clearDone()">
-                            <i class="glyphicon glyphicon-minus" aria-hidden="true"></i>
-                            Clear Completed
-                        </button>
+                        <!-- TO DO LIST -->
+                        <div class="item" ng-repeat="item in todoCtrl.items track by item.label">
+                            <input type="checkbox"
+                                   name="done[{{$index}}]"
+                                   ng-model="item.done"/>
 
-                        <button class="btn btn-danger" ng-click="todoCtrl.clearAll()">
-                            <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
-                            Clear All
-                        </button>
+                            <label for="item[{{$index}}]"
+                                   ng-class="{done: item.done}"
+                                   ng-dblclick="item.edited = true"
+                                   ng-hide="item.edited">
+                                {{item.label}}
+                            </label>
 
-                    </form>
+                            <input type="text"
+                                   name="item[{{$index}}]"
+                                   id="item[{{$index}}]"
+                                   ng-show="item.edited"
+                                   ng-model="item.label"
+                                   ng-blur="item.edited = false" />
+
+                            <button class="btn btn-default pull-right remove"
+                                    ng-click="todoCtrl.remove($event, $index)">
+                                <i class="glyphicon glyphicon-minus" aria-hidden="true"></i>
+                                Remove
+                            </button>
+
+                        </div>
+                        <!-- END TO DO LIST -->
+                    </div>
+
+                    <!-- BUTTONS -->
+                    <button class="btn btn-warning" ng-click="todoCtrl.clearDone()">
+                        <i class="glyphicon glyphicon-minus" aria-hidden="true"></i>
+                        Clear Completed
+                    </button>
+
+                    <button class="btn btn-danger" ng-click="todoCtrl.clearAll()">
+                        <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
+                        Clear All
+                    </button>
+
+                    <button class="btn btn-default pull-right" ng-click="todoCtrl">
+                        <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
+                        Clear All
+                    </button>
+                    <!-- END BUTTONS -->
+
                 </div>
 
             </div>
